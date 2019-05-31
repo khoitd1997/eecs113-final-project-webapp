@@ -23,5 +23,7 @@
 ## Credits
 
 [google icon themes][1]
+[table by PableraShow][2]
 
 [1]: https://github.com/google/material-design-icons/blob/master/LICENSE
+[2]: https://colorlib.com/wp/css3-table-templates/
