@@ -17,7 +17,7 @@ namespace eecs113_final_project_webapp.Controllers
 
             var context = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
 
-            return View();
+            return View(context.GetAllPHLoggers());
         }
 
         public IActionResult Privacy()
