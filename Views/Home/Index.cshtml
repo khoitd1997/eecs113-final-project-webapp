@@ -1,26 +1,90 @@
-﻿@model IEnumerable<eecs113_final_project_webapp.Models.PHLogger>
-@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!-- Header -->
+<!-- <header class="w3-container w3-red w3-center" style="padding:128px 16px">
+        <h1 class="w3-margin w3-jumbo">START PAGE</h1>
+        <p class="w3-xlarge">Template by w3.css</p>
+        <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
+    </header> -->
 
-<h2>Films</h2>
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>State</th>
-  </tr>
-  @foreach (var item in Model)
-  {
-    <tr>
-      <td>
-        @Html.DisplayFor(modelItem => item.PHlid)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Email)
-      </td>
-    </tr>
-  }
-</table>
+
+<link rel="stylesheet" href="~/css/split.css" />
+<link rel="stylesheet" href="~/css/table.css" />
+<body>
+    <div id="main_content" class="w3-container" style="max-width:2000px;margin-top:0px">
+        <div class="w3-padding-64 split split_left" id="main_content1">
+            @model IEnumerable<eecs113_final_project_webapp.Models.PHLogger>
+                @{
+                ViewData["Title"] = "Home Page";
+                }
+
+                <!-- <h2>Recent Events</h2> -->
+                <table class="table">
+                    <caption>Recent Events</caption>
+                    <tr>
+                        <th>Name</th>
+                        <th>State</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PHlid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                    </tr>
+                    }
+                </table>
+
+                <!-- <h1><span class="blue"></span>Recent Events<span class="blue"></span>
+                </h1>
+                <table class="table_container">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h1>Sites</h1>
+                            </th>
+                            <th>
+                                <h1>Views</h1>
+                            </th>
+                            <th>
+                                <h1>Clicks</h1>
+                            </th>
+                            <th>
+                                <h1>Average</h1>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td>3654</td>
+                            <td>2961</td>
+                            <td>00:12:10</td>
+                        </tr>
+                        <tr>
+                            <td>CodePen</td>
+                            <td>2002</td>
+                            <td>4135</td>
+                            <td>00:46:19</td>
+                        </tr>
+                    </tbody>
+                </table> -->
+
+        </div>
+
+        <footer class="w3-container w3-padding-64 w3-center w3-opacity"
+            style="right: 0;bottom: 0;left: 0;position: absolute;">
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+        </footer>
+</body>
+
+<!-- <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - eecs113_final_project_webapp - <a asp-area="" asp-controller="Home"
+                asp-action="Privacy">Privacy</a>
+        </div>
+    </footer> -->
 
 <!-- <div class="text-center">
     <h1 class="display-4">Welcome</h1>
