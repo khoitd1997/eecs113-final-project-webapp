@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using System.Data.SqlClient;
+using System.Text;
+
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +32,39 @@ namespace eecs113_webapp
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                try
+                {
+                    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                    builder.DataSource = "eecs113-final.database.windows.net";
+                    builder.UserID = "kd";
+                    builder.Password = "116$I!1737LyF^YGxx5";
+                    builder.InitialCatalog = "";
+
+                    using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                    {
+                        connection.Open();
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("SELECT T.phlid, T.email ");
+                        sb.Append("FROM Test T ");
+                        String sql = sb.ToString();
+
+                        using (SqlCommand command = new SqlCommand(sql, connection))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    await context.Response.WriteAsync($"{reader.GetString(0)} {reader.GetString(1)}");
+                                    // Console.WriteLine("{0} {1}", , reader.GetString(1));
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
             });
         }
     }
