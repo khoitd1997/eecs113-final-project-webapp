@@ -23,11 +23,6 @@ namespace eecs113_final_project_webapp.Controllers
             return View(queryContext.GetAllPHLoggers());
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

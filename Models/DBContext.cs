@@ -79,5 +79,35 @@ namespace eecs113_final_project_webapp.Models
             }
             return list;
         }
+        public List<PHLogger> GetMostRecentEvents()
+        {
+            var list = new List<PHLogger>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                StringBuilder query = new StringBuilder();
+                query.Append("SELECT T.phlid, T.email ");
+                query.Append("FROM Test T ");
+                String sqlQuery = query.ToString();
+
+                using (var command = new NpgsqlCommand(sqlQuery, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new PHLogger()
+                            {
+                                PHlid = reader.GetString(0),
+                                Email = reader.GetString(1)
+                            });
+                        }
+                    }
+                }
+            }
+            return list;
+        }
     }
 }
