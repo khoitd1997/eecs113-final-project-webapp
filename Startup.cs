@@ -38,7 +38,7 @@ namespace eecs113_webapp
                     builder.DataSource = "eecs113-final.database.windows.net";
                     builder.UserID = "kd";
                     builder.Password = "116$I!1737LyF^YGxx5";
-                    builder.InitialCatalog = "";
+                    builder.InitialCatalog = "eecs113-final-db";
 
                     using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                     {
