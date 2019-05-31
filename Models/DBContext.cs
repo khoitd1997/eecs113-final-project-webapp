@@ -30,6 +30,9 @@ namespace eecs113_final_project_webapp.Models
             {
                 conn.Open();
                 StringBuilder sb = new StringBuilder();
+                // sb.Append(@"DROP DATABASE IF EXISTS eecs113;
+                //         CREATE DATABASE eecs113;
+                //         ");
                 sb.Append("DROP TABLE IF EXISTS Test;");
                 sb.Append(@"CREATE TABLE Test(
                     phlid  	VARCHAR(8),
