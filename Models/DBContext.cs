@@ -47,17 +47,13 @@ namespace eecs113_final_project_webapp.Models
                 {
                     command.ExecuteReader();
                 }
-            }
 
-            using (var conn = GetConnection())
-            {
-                conn.Open();
-                StringBuilder sb = new StringBuilder();
-                sb.Append("SELECT T.phlid, T.email ");
-                sb.Append("FROM Test T ");
-                String sql = sb.ToString();
+                StringBuilder query = new StringBuilder();
+                query.Append("SELECT T.phlid, T.email ");
+                query.Append("FROM Test T ");
+                String sqlQuery = query.ToString();
 
-                using (var command = new NpgsqlCommand(sql, conn))
+                using (var command = new NpgsqlCommand(sqlQuery, conn))
                 {
                     using (var reader = command.ExecuteReader())
                     {
