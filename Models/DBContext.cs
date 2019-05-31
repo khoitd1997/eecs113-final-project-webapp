@@ -22,10 +22,8 @@ namespace eecs113_final_project_webapp.Models
             return new NpgsqlConnection(ConnectionString);
         }
 
-        public List<PHLogger> GetAllPHLoggers()
+        public void CreateTable()
         {
-            var list = new List<PHLogger>();
-
             using (var conn = GetConnection())
             {
                 conn.Open();
@@ -46,10 +44,18 @@ namespace eecs113_final_project_webapp.Models
                 INSERT INTO Test VALUES('3','delta.feest@uci.com','fkasldfjlads'); ");
                 String sql = sb.ToString();
 
-                using (var command = new NpgsqlCommand(sql, conn))
-                {
-                    command.ExecuteReader();
-                }
+                var command = new NpgsqlCommand(sql, conn);
+                command.ExecuteReader();
+            }
+        }
+
+        public List<PHLogger> GetAllPHLoggers()
+        {
+            var list = new List<PHLogger>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
 
                 StringBuilder query = new StringBuilder();
                 query.Append("SELECT T.phlid, T.email ");
