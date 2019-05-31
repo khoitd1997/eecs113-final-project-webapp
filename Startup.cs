@@ -54,8 +54,7 @@ namespace eecs113_webapp
                             {
                                 while (reader.Read())
                                 {
-                                    await context.Response.WriteAsync($"{reader.GetString(0)} {reader.GetString(1)}");
-                                    // Console.WriteLine("{0} {1}", , reader.GetString(1));
+                                    await context.Response.WriteAsync($"{reader.GetString(0)} {reader.GetString(1)}\n");
                                 }
                             }
                         }
@@ -63,7 +62,7 @@ namespace eecs113_webapp
                 }
                 catch (SqlException e)
                 {
-                    Console.WriteLine(e.ToString());
+                    await context.Response.WriteAsync(e.ToString());
                 }
             });
         }
