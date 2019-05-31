@@ -4,10 +4,10 @@
 
 ## General Information
 
-### Azure Database
+### Azure Posgres Database
 
+- Server name: eecs113-final-pq
 - Database name: eecs113-final-db
-- Server name: eecs113-final
 - Server admin login: kd
 - Password: 116$I!1737LyF^YGxx5
 - Server Location: West US
@@ -21,5 +21,5 @@
 
 ### Access URL
 
-- Database: eecs113-final.database.windows.net
+- Database: eecs113-final-pq.postgres.database.azure.com
 - Webapp: https://eecs113-final-project.azurewebsites.net
