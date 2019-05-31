@@ -19,3 +19,9 @@
 
 - Database: eecs113-final-pq.postgres.database.azure.com
 - Webapp: https://eecs113-final-project.azurewebsites.net
+
+## Credits
+
+[google icon themes][1]
+
+[1]: https://github.com/google/material-design-icons/blob/master/LICENSE

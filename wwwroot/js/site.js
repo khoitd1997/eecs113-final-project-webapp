@@ -32,16 +32,19 @@ var utils = {
 
 // Write your JavaScript code.
 function changeTab(currButtonID) {
-    var buttons = document.getElementById('navbar').getElementsByTagName('*');
+    var buttons = document.getElementById('sidenav').getElementsByTagName('*');
     for (let button of buttons) {
-        if (utils.hasClass(button, "w3-white")) {
-            button.classList.remove("w3-white");
-            utils.turnVisibilityOff(document.getElementById("main_content" + button.id.match(/\d+$/)));
+        if (utils.hasClass(button, "sidenav_entry_selected")) {
+            button.classList.remove("sidenav_entry_selected");
+            button.classList.add("sidenav_entry_unselected");
+            // utils.turnVisibilityOff(document.getElementById("main_content" + button.id.match(/\d+$/)));
         }
     }
 
     var currButton = document.getElementById(currButtonID)
-    currButton.classList.add("w3-white");
-    utils.turnVisibilityOn(document.getElementById("main_content" + currButton.id.match(/\d+$/)));
-    // utils.toggleVisibility(document.getElementById("main_content" + currButtonID.match(/\d+$/)));
+    if (utils.hasClass(currButton, "sidenav_entry_unselected")) {
+        currButton.classList.remove("sidenav_entry_unselected");
+    }
+    currButton.classList.add("sidenav_entry_selected");
+    // utils.turnVisibilityOn(document.getElementById("main_content" + currButton.id.match(/\d+$/)));
 }

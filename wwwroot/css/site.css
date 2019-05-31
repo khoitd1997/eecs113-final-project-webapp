@@ -52,3 +52,10 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.material-icons {
+    display: inline-flex;
+    padding-bottom: 5px;
+    vertical-align: middle;
+    padding-right: 5px;
+}
