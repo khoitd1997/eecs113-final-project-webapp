@@ -19,7 +19,7 @@ namespace eecs113_final_project_webapp.Models
 
         private NpgsqlConnection GetConnection()
         {
-            return new NpgsqlConnection(ConnectionString);
+            return new NpgsqlConnection("Server=eecs113-final-pq.postgres.database.azure.com;Database=eecs113-final-db;Port=5432;User Id=kd;Password=116$I!1737LyF^YGxx5;Ssl Mode=Require;");
         }
 
         public List<PHLogger> GetAllPHLoggers()
