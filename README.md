@@ -15,6 +15,10 @@
 - Collation: SQL_Latin1_General_CP1_CI_AS
 - Storage: 2 Gb
 
+### Azure Keyvault
+
+- Name: eecs113-keyvault
+
 ### Access URL
 
 - Database: eecs113-final.database.windows.net

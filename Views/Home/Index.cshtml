@@ -1,8 +1,28 @@
-﻿@{
+﻿@model IEnumerable<eecs113_final_project_webapp.Models.PHLogger>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<h2>Films</h2>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>State</th>
+  </tr>
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.PHlid)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Email)
+      </td>
+    </tr>
+  }
+</table>
+
+<!-- <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div> -->
