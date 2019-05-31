@@ -39,7 +39,8 @@ namespace eecs113_final_project_webapp.Models
                 );");
                 sb.Append(@"
                 INSERT INTO Test VALUES ('1','tereasa.feest@uci.com','klfsadjlfadjklsjlfkas');
-                INSERT INTO Test VALUES ('2','kd.feest@uci.com','fkasldfjlads');");
+                INSERT INTO Test VALUES ('2','kd.feest@uci.com','fkasldfjlads');
+                INSERT INTO Test VALUES('3','delta.feest@uci.com','fkasldfjlads'); ");
                 String sql = sb.ToString();
 
                 using (var command = new NpgsqlCommand(sql, conn))
