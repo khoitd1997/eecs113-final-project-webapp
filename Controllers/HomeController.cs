@@ -15,9 +15,12 @@ namespace eecs113_final_project_webapp.Controllers
         {
             ViewData["Title"] = "Yo Dawg";
 
-            var context = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
+            var createContext = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
+            createContext.CreateTable();
 
-            return View(context.GetAllPHLoggers());
+            var queryContext = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
+
+            return View(queryContext.GetAllPHLoggers());
         }
 
         public IActionResult Privacy()
