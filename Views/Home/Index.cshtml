@@ -21,16 +21,12 @@
                         <thead>
                             <tr>
                                 <th align="center">Type</th>
-                                <th align="center">Name</th>
                                 <th align="center">Time</th>
                             </tr>
                         </thead>
                         @foreach (var item in Model)
                         {
                         <tr>
-                            <td align="center">
-                                @Html.DisplayFor(modelItem => item.PHlid)
-                            </td>
                             <td align="center">
                                 @Html.DisplayFor(modelItem => item.PHlid)
                             </td>
@@ -51,7 +47,7 @@
                         </thead>
                         <tr>
                             <td align="center">
-                                Temperature
+                                Temperature(C)
                             </td>
                             <td align="center">
                                 40C
@@ -59,7 +55,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                Humidity
+                                Humidity(%)
                             </td>
                             <td align="center">
                                 40%
@@ -67,7 +63,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                Water Amount
+                                Water Amount(L)
                             </td>
                             <td align="center">
                                 40L
