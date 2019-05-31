@@ -2,7 +2,7 @@
 
 .net core webapp for eecs113 final project
 
-## Account Information
+## General Information
 
 ### Azure Database
 
@@ -14,3 +14,8 @@
 - Resource Group: eecs113
 - Collation: SQL_Latin1_General_CP1_CI_AS
 - Storage: 2 Gb
+
+### Access URL
+
+- Database: eecs113-final.database.windows.net
+- Webapp: https://eecs113-final-project.azurewebsites.net
