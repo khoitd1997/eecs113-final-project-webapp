@@ -1,4 +1,4 @@
-SELECT *
+SELECT A.eid, A.etype, A.start_time
 FROM action_event A
 ORDER BY A.start_time DESC
 LIMIT 5;

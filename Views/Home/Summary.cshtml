@@ -12,7 +12,7 @@
 <body>
     <div id="main_content" style="max-width:2000px;">
         <div id="main_content1" class="container w3-padding-32">
-            @model IEnumerable<eecs113_final_project_webapp.Models.PHLogger>
+            @model IEnumerable<eecs113_final_project_webapp.Models.ActionEvent>
                 @{
                 ViewData["Title"] = "Home Page";
                 }
@@ -20,6 +20,7 @@
                     <h1><span></span>Recent Events<span></span>
                         <thead>
                             <tr>
+                                <th align="center">ID</th>
                                 <th align="center">Type</th>
                                 <th align="center">Time</th>
                             </tr>
@@ -28,10 +29,13 @@
                         {
                         <tr>
                             <td align="center">
-                                @Html.DisplayFor(modelItem => item.PHlid)
+                                @Html.DisplayFor(modelItem => item.ID)
                             </td>
                             <td align="center">
-                                @Html.DisplayFor(modelItem => item.Email)
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.StartTime)
                             </td>
                         </tr>
                         }
@@ -50,7 +54,7 @@
                                 Temperature(C)
                             </td>
                             <td align="center">
-                                40C
+                                40
                             </td>
                         </tr>
                         <tr>
@@ -58,7 +62,7 @@
                                 Humidity(%)
                             </td>
                             <td align="center">
-                                40%
+                                40
                             </td>
                         </tr>
                         <tr>
@@ -66,7 +70,7 @@
                                 Water Amount(L)
                             </td>
                             <td align="center">
-                                40L
+                                40
                             </td>
                         </tr>
                 </table>

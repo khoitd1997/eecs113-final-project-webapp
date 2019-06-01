@@ -58,8 +58,8 @@ namespace eecs113_final_project_webapp.Models
                 conn.Open();
 
                 StringBuilder query = new StringBuilder();
-                query.Append("SELECT T.phlid, T.email ");
-                query.Append("FROM Test T ");
+                query.Append(@"SELECT T.phlid, T.email 
+                FROM Test T");
                 String sqlQuery = query.ToString();
 
                 using (var command = new NpgsqlCommand(sqlQuery, conn))
@@ -79,17 +79,20 @@ namespace eecs113_final_project_webapp.Models
             }
             return list;
         }
-        public List<PHLogger> GetMostRecentEvents()
+        public List<ActionEvent> GetMostRecentActionEvents(int maxTotalRow)
         {
-            var list = new List<PHLogger>();
+            var list = new List<ActionEvent>();
 
             using (var conn = GetConnection())
             {
                 conn.Open();
 
                 StringBuilder query = new StringBuilder();
-                query.Append("SELECT T.phlid, T.email ");
-                query.Append("FROM Test T ");
+                query.Append($@"SELECT A.eid, A.etype, A.start_time
+                FROM action_event A
+                ORDER BY A.start_time DESC
+                LIMIT {maxTotalRow}; ");
+
                 String sqlQuery = query.ToString();
 
                 using (var command = new NpgsqlCommand(sqlQuery, conn))
@@ -98,11 +101,11 @@ namespace eecs113_final_project_webapp.Models
                     {
                         while (reader.Read())
                         {
-                            list.Add(new PHLogger()
-                            {
-                                PHlid = reader.GetString(0),
-                                Email = reader.GetString(1)
-                            });
+                            list.Add(new ActionEvent(
+                                reader.GetInt32(0),
+                                reader.GetString(1),
+                                reader.GetDateTime(2))
+                            );
                         }
                     }
                 }

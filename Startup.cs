@@ -61,7 +61,7 @@ namespace eecs113_final_project_webapp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Summary}/{id?}");
             });
         }
     }
