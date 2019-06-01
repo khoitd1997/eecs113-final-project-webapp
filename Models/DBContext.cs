@@ -15,6 +15,7 @@ namespace eecs113_final_project_webapp.Models
         public DBContext(string connectionString)
         {
             this.ConnectionString = connectionString;
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<ActionEvent.EventType>("event_type");
         }
 
         private NpgsqlConnection GetConnection()
@@ -88,9 +89,9 @@ namespace eecs113_final_project_webapp.Models
                 conn.Open();
 
                 StringBuilder query = new StringBuilder();
-                query.Append($@"SELECT A.eid, A.etype, A.start_time
+                query.Append($@"SELECT A.eid, A.etype, A.time_stamp
                 FROM action_event A
-                ORDER BY A.start_time DESC
+                ORDER BY A.time_stamp DESC
                 LIMIT {maxTotalRow}; ");
 
                 String sqlQuery = query.ToString();
@@ -103,7 +104,7 @@ namespace eecs113_final_project_webapp.Models
                         {
                             list.Add(new ActionEvent(
                                 reader.GetInt32(0),
-                                reader.GetString(1),
+                                reader.GetFieldValue<ActionEvent.EventType>(1),
                                 reader.GetDateTime(2))
                             );
                         }
@@ -111,6 +112,51 @@ namespace eecs113_final_project_webapp.Models
                 }
             }
             return list;
+        }
+
+        public List<WeatherData> GetMostRecentHourlyWeatherData(int maxTotalRow)
+        {
+            var list = new List<WeatherData>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                StringBuilder query = new StringBuilder();
+                query.Append($@"SELECT W.wid, W.temperature, W.humidity, W.water_saved, W.time_stamp
+                FROM weather_data W
+                ORDER BY W.time_stamp DESC
+                LIMIT {maxTotalRow};
+                ");
+
+                String sqlQuery = query.ToString();
+
+                using (var command = new NpgsqlCommand(sqlQuery, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new WeatherData(
+                                reader.GetInt32(0),
+                                reader.GetDouble(1),
+                                reader.GetDouble(2),
+                                reader.GetDouble(3),
+                                reader.GetDateTime(4)
+                            ));
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        public SummaryReport GetSummaryReport()
+        {
+            var actionEvents = GetMostRecentActionEvents(3);
+            var weatherDatas = GetMostRecentHourlyWeatherData(3);
+
+            return new SummaryReport(weatherDatas, actionEvents);
         }
     }
 }

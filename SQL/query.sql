@@ -1,9 +1,9 @@
-SELECT A.eid, A.etype, A.start_time
+SELECT A.eid, A.etype, A.time_stamp
 FROM action_event A
-ORDER BY A.start_time DESC
+ORDER BY A.time_stamp DESC
 LIMIT 5;
 
-SELECT *
+SELECT W.wid, W.temperature, W.humidity, W.water_saved, W.time_stamp
 FROM weather_data W
-ORDER BY W.record_time DESC
-LIMIT 1;
+ORDER BY W.time_stamp DESC
+LIMIT 5;

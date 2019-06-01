@@ -5,75 +5,72 @@
         <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
     </header> -->
 
-
+@model eecs113_final_project_webapp.Models.SummaryReport
+@{
+ViewData["Title"] = "Home Page";
+}
 
 <link rel="stylesheet" href="~/css/table.css" />
 
 <body>
     <div id="main_content" style="max-width:2000px;">
         <div id="main_content1" class="container w3-padding-32">
-            @model IEnumerable<eecs113_final_project_webapp.Models.ActionEvent>
-                @{
-                ViewData["Title"] = "Home Page";
-                }
-                <table class="table_container">
-                    <h1><span></span>Recent Events<span></span>
-                        <thead>
-                            <tr>
-                                <th align="center">ID</th>
-                                <th align="center">Type</th>
-                                <th align="center">Time</th>
-                            </tr>
-                        </thead>
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            <td align="center">
-                                @Html.DisplayFor(modelItem => item.ID)
-                            </td>
-                            <td align="center">
-                                @Html.DisplayFor(modelItem => item.Type)
-                            </td>
-                            <td align="center">
-                                @Html.DisplayFor(modelItem => item.StartTime)
-                            </td>
-                        </tr>
-                        }
-                </table>
 
-                <table class="table_container">
-                    <h1><span></span>Hourly Data<span></span>
-                        <thead>
-                            <tr>
-                                <th align="center">Type</th>
-                                <th align="center">Value</th>
-                            </tr>
-                        </thead>
+            <table class="table_container">
+                <h1><span></span>Recent Events<span></span>
+                    <thead>
                         <tr>
-                            <td align="center">
-                                Temperature(C)
-                            </td>
-                            <td align="center">
-                                40
-                            </td>
+                            <th align="center">ID</th>
+                            <th align="center">Type</th>
+                            <th align="center">Time</th>
                         </tr>
+                    </thead>
+                    @for (var i =0; i< Model.ActionEvents.Count; ++i) { 
                         <tr>
-                            <td align="center">
-                                Humidity(%)
-                            </td>
-                            <td align="center">
-                                40
-                            </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.ActionEvents[i].ID)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.ActionEvents[i].TypeString)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.ActionEvents[i].Timestamp)
+                        </td>
                         </tr>
+                    }
+            </table>
+
+            <table class="table_container">
+                <h1><span></span>Recent Hourly Data Records<span></span>
+                    <thead>
                         <tr>
-                            <td align="center">
-                                Water Amount(L)
-                            </td>
-                            <td align="center">
-                                40
-                            </td>
+                            <th align="center">ID</th>
+                            <th align="center">Temperature(C)</th>
+                            <th align="center">Humidity(%)</th>
+                            <th align="center">Water Saved(L)</th>
+                            <th align="center">Time</th>
                         </tr>
-                </table>
+                    </thead>
+                    @for (var i =0; i< Model.WeatherDatas.Count; ++i) { 
+                        <tr>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.WeatherDatas[i].ID)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.WeatherDatas[i].Temperature)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.WeatherDatas[i].Humidity)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.WeatherDatas[i].WaterSaved)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => Model.WeatherDatas[i].Timestamp)
+                        </td>
+                        </tr>
+                    }
+            </table>
         </div>
     </div>
 </body>

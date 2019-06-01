@@ -13,20 +13,11 @@ namespace eecs113_final_project_webapp.Controllers
     {
         public IActionResult Summary()
         {
-            // ViewData["Title"] = "Yo Dawg";
-
-            // var createContext = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
-            // createContext.CreateTable();
-
-            // var queryContext = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
-
-            // return View(queryContext.GetAllPHLoggers());
-
             ViewData["Title"] = "Yo Dawg";
 
-            var queryContext = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
+            var summaryReportCtx = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
 
-            return View(queryContext.GetMostRecentActionEvents(3));
+            return View(summaryReportCtx.GetSummaryReport());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
