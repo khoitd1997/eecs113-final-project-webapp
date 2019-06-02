@@ -1,4 +1,4 @@
-# eecs113-final-project-webapp
+# EECS113 Final Project Webapp
 
 .NET core webapp for eecs113 final project. Serve as the frontend for users viewing/searching the data as well as backend REST API server for logging.
 
