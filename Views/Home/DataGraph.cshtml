@@ -1,9 +1,10 @@
-@model IEnumerable<eecs113_final_project_webapp.Models.ActionEvent>
+@model IEnumerable<eecs113_final_project_webapp.Models.WeatherData>
     @{
     ViewData["Title"] = "Home Page";
     }
 
     <script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/css/graph.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     <script>
@@ -14,9 +15,21 @@
 
     <body>
         <div style="max-width:2000px;">
-            <div class="container w3-padding-32">
-                <canvas id="myChart"></canvas>
-        <script type="text/javascript" src="~/js/graph.js" asp-append-version="true"></script>
+            <div class="w3-padding-32 graph_container">
+                <canvas id="temperature_chart" class="graph"></canvas>
+                <canvas id="humidity_chart" class="graph"></canvas>
+                <script type="text/javascript" src="~/js/graph.js" asp-append-version="true"></script>
+                <script>
+                    var temperatures = [];
+                    var humidities = [];
+                    var time_stamps = [];
+                    @foreach(var item in Model) {
+                        @: temperatures.push("@item.Temperature");
+                        @: humidities.push("@item.Humidity");
+                        @: time_stamps.push("@item.Timestamp");
+                    }
+                    drawGraph(temperatures, humidities, time_stamps);
+                </script>
             </div>
         </div>
     </body>

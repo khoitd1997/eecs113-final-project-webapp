@@ -1,0 +1,9 @@
+.graph_container {
+    margin: auto;
+    height: 480px;
+    width: 70%;
+}
+
+.graph {
+    padding-bottom: 20px;
+}

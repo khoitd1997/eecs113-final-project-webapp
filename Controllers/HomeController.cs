@@ -19,7 +19,6 @@ namespace eecs113_final_project_webapp.Controllers
             return View(summaryReportCtx.GetSummaryReport());
         }
 
-        [HttpGet]
         public IActionResult EventLog()
         {
             var searchTarget = HttpContext.Request.Query["target"].ToList();
@@ -43,8 +42,9 @@ namespace eecs113_final_project_webapp.Controllers
 
         public IActionResult DataGraph()
         {
-            var eventCtx = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
-            return View(eventCtx.GetMostRecentActionEvents(MaxEventLogRow_));
+            var graphCtx = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
+
+            return View(graphCtx.GetMostRecentHourlyWeatherData(10));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
