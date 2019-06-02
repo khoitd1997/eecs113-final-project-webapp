@@ -50,36 +50,6 @@ namespace eecs113_final_project_webapp.Models
             }
         }
 
-        public List<PHLogger> GetAllPHLoggers()
-        {
-            var list = new List<PHLogger>();
-
-            using (var conn = GetConnection())
-            {
-                conn.Open();
-
-                StringBuilder query = new StringBuilder();
-                query.Append(@"SELECT T.phlid, T.email 
-                FROM Test T");
-                String sqlQuery = query.ToString();
-
-                using (var command = new NpgsqlCommand(sqlQuery, conn))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            list.Add(new PHLogger()
-                            {
-                                PHlid = reader.GetString(0),
-                                Email = reader.GetString(1)
-                            });
-                        }
-                    }
-                }
-            }
-            return list;
-        }
         public List<ActionEvent> GetMostRecentActionEvents(int maxTotalRow)
         {
             var list = new List<ActionEvent>();
@@ -93,6 +63,69 @@ namespace eecs113_final_project_webapp.Models
                 FROM action_event A
                 ORDER BY A.time_stamp DESC
                 LIMIT {maxTotalRow}; ");
+
+                String sqlQuery = query.ToString();
+
+                using (var command = new NpgsqlCommand(sqlQuery, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new ActionEvent(
+                                reader.GetInt32(0),
+                                reader.GetFieldValue<ActionEvent.EventType>(1),
+                                reader.GetDateTime(2))
+                            );
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        private (string, string) formatActionEventArg(string target, string displayColumn)
+        {
+            switch (displayColumn)
+            {
+                case "ID":
+                    if (int.TryParse(target, out _))
+                    {
+                        return (target, "eid");
+                    }
+                    return ("", "eid");
+
+                case "Type":
+                    if (ActionEvent.IsValidEvent(target))
+                    {
+                        return ("'" + target + "'", "etype");
+                    }
+                    else
+                    {
+                        return ("", "etype");
+                    }
+                default:
+                    throw new ArgumentException("unsupported display column");
+            }
+        }
+        public List<ActionEvent> SearchActionEvents(string target, string displayColumn)
+        {
+            var list = new List<ActionEvent>();
+            var (sqlTarget, sqlColumn) = formatActionEventArg(target, displayColumn);
+
+            if (String.IsNullOrEmpty(sqlTarget))
+            {
+                return list;
+            }
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+
+                StringBuilder query = new StringBuilder();
+                query.Append($@"SELECT A.eid, A.etype, A.time_stamp
+                FROM action_event A
+                WHERE A.{sqlColumn} = {sqlTarget}
+                ORDER BY A.time_stamp DESC;");
 
                 String sqlQuery = query.ToString();
 

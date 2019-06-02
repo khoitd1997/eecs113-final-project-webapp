@@ -1,0 +1,67 @@
+@model IEnumerable<eecs113_final_project_webapp.Models.ActionEvent>
+    @{
+    ViewData["Title"] = "Home Page";
+    }
+
+    <link rel="stylesheet" href="~/css/table.css" />
+    <link rel="stylesheet" href="~/css/search_bar.css" />
+    <!-- <link rel="stylesheet" href="~/css/dropdown.css" /> -->
+    <script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        window.onload = function () {
+            changeTab(2)
+        }
+    </script>
+
+    <body>
+        <div style="max-width:2000px;">
+            <div class="container w3-padding-32">
+                <form action="EventLog">
+                    <div class="search">
+                        <div class="dropdown">
+                            <input type="button" id="searchDropdownButton"
+                                onclick="toggleDropDown('searchDropdownDiv')" class="dropbtn" value="ID">
+                            <input id="searchDropdownInput" type="hidden" name="category" value="ID">
+                            <div id="searchDropdownDiv" class="dropdown-content">
+                                <a
+                                    onclick="changeDropDownOption('searchDropdownButton','searchDropdownInput', 'ID')">ID</a>
+                                <a
+                                    onclick="changeDropDownOption('searchDropdownButton','searchDropdownInput', 'Type')">Type</a>
+                                <!-- <a onclick="changeDropDownOption('searchDropdownButton', 'Time')">Time</a> -->
+                            </div>
+                        </div>
+                        <input type="text" name="target" class="searchTerm" placeholder="Type in search target here">
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <table class="table_container">
+                    <h1><span></span>Recent Logs<span></span>
+                        <thead>
+                            <tr>
+                                <th align="center">ID</th>
+                                <th align="center">Type</th>
+                                <th align="center">Time</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model) {
+                        <tr>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.TypeString)
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.Timestamp)
+                            </td>
+                        </tr>
+                        }
+                </table>
+
+            </div>
+        </div>
+    </body>

@@ -62,6 +62,9 @@ namespace eecs113_final_project_webapp
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Summary}/{id?}");
+                routes.MapRoute(
+                    name: "EventLog",
+                    template: "{controller=Home}/{action=EventLog}/{id?}");
             });
         }
     }

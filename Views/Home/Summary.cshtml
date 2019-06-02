@@ -1,20 +1,20 @@
-﻿<!-- Header -->
-<!-- <header class="w3-container w3-red w3-center" style="padding:128px 16px">
-        <h1 class="w3-margin w3-jumbo">START PAGE</h1>
-        <p class="w3-xlarge">Template by w3.css</p>
-        <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
-    </header> -->
-
-@model eecs113_final_project_webapp.Models.SummaryReport
+﻿@model eecs113_final_project_webapp.Models.SummaryReport
 @{
 ViewData["Title"] = "Home Page";
 }
 
 <link rel="stylesheet" href="~/css/table.css" />
+<script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
+
+<script>
+window.onload = function () {
+    changeTab(1)
+}
+</script>
 
 <body>
-    <div id="main_content" style="max-width:2000px;">
-        <div id="main_content1" class="container w3-padding-32">
+    <div  style="max-width:2000px;">
+        <div class="container w3-padding-32">
 
             <table class="table_container">
                 <h1><span></span>Recent Events<span></span>
@@ -74,8 +74,3 @@ ViewData["Title"] = "Home Page";
         </div>
     </div>
 </body>
-
-<!-- <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div> -->

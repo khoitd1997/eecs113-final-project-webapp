@@ -20,31 +20,48 @@ var utils = {
 
     turnVisibilityOn: function (element) {
         element.style.display = "block";
-    }
+    },
+
 }
 
-// window.onload = function () {
-//     var buttons = document.getElementById('navbar').getElementsByTagName('*');
-//     for (let button of buttons) {
-//         button.onclick = changeTab(button.id);
-//     }
-// }
-
 // Write your JavaScript code.
-function changeTab(currButtonID) {
+function changeTab(tabNum) {
     var buttons = document.getElementById('sidenav').getElementsByTagName('*');
     for (let button of buttons) {
         if (utils.hasClass(button, "sidenav_entry_selected")) {
             button.classList.remove("sidenav_entry_selected");
             button.classList.add("sidenav_entry_unselected");
-            // utils.turnVisibilityOff(document.getElementById("main_content" + button.id.match(/\d+$/)));
         }
     }
 
-    var currButton = document.getElementById(currButtonID)
+    var currButton = document.getElementById('sidenav' + tabNum)
     if (utils.hasClass(currButton, "sidenav_entry_unselected")) {
         currButton.classList.remove("sidenav_entry_unselected");
     }
     currButton.classList.add("sidenav_entry_selected");
-    // utils.turnVisibilityOn(document.getElementById("main_content" + currButton.id.match(/\d+$/)));
+}
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function toggleDropDown(buttonID) {
+    document.getElementById(buttonID).classList.toggle("show");
+}
+
+function changeDropDownOption(buttonID, inputID, newText) {
+    document.getElementById(buttonID).value = newText;
+    document.getElementById(inputID).value = newText;
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
 }
