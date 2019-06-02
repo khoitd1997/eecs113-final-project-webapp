@@ -16,7 +16,7 @@ namespace eecs113_final_project_webapp.Models
         {
             this.ConnectionString = connectionString;
             NpgsqlConnection.GlobalTypeMapper.MapEnum<ActionEvent.EventType>("event_type");
-            // CreateTable();
+            CreateTable();
         }
 
         private NpgsqlConnection GetConnection()
@@ -51,18 +51,6 @@ namespace eecs113_final_project_webapp.Models
                         water_saved float                    NOT NULL,
                         time_stamp TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
                     );
-
-                    INSERT INTO action_event(etype)
-                    VALUES ('watering_start'),
-                           ('watering_end'),
-                           ('watering_continue'),
-                           ('human_detected');
-
-                    INSERT INTO weather_data(temperature, humidity, water_saved)
-                    VALUES (2.5, 4, 5),
-                            (5.5, 4, 5),
-                            (5.5, 4, 5),
-                            (3.5, 6, 5);
                 ");
 
                 String sql = sb.ToString();
