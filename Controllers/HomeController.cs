@@ -19,6 +19,11 @@ namespace eecs113_final_project_webapp.Controllers
             return View(summaryReportCtx.GetSummaryReport());
         }
 
+        public IActionResult Credit()
+        {
+            return View(new EmptyResult());
+        }
+
         public IActionResult EventLog()
         {
             var searchTarget = HttpContext.Request.Query["target"].ToList();
