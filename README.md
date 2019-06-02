@@ -18,7 +18,7 @@
 ### Access URL
 
 - Database: eecs113-final-pq.postgres.database.azure.com
-- Webapp: https://eecs113-final-project.azurewebsites.net
+- Webapp: ```https://eecs113-final-project.azurewebsites.net```
 
 ## Credits
 
@@ -27,6 +27,12 @@
 [chart by chart.js][3]
 
 ## Usage Info
+
+### Features
+
+- Summary of recent events and data: ```/Home/Summary```
+- View and search all events: ```/Home/EventLog```
+- Graph recent weather data: ```/Home/DataGraph```
 
 ### API
 
