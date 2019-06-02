@@ -1,6 +1,6 @@
 SELECT A.eid, A.etype, A.time_stamp
 FROM action_event A
-WHERE A.etype = '*'
+WHERE A.etype='watering_start'
 ORDER BY A.time_stamp DESC
 LIMIT 5;
 

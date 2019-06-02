@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using NpgsqlTypes;
+using Newtonsoft.Json;
 
 
 namespace eecs113_final_project_webapp.Models
@@ -46,7 +47,9 @@ namespace eecs113_final_project_webapp.Models
         }
         private DBContext context;
         public Int32 ID { get; private set; }
+
         public EventType Type { get; private set; }
+        [JsonProperty("etype")]
         public String TypeString
         {
             get

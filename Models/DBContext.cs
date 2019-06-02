@@ -16,7 +16,7 @@ namespace eecs113_final_project_webapp.Models
         {
             this.ConnectionString = connectionString;
             NpgsqlConnection.GlobalTypeMapper.MapEnum<ActionEvent.EventType>("event_type");
-            CreateTable();
+            // CreateTable();
         }
 
         private NpgsqlConnection GetConnection()
@@ -62,9 +62,6 @@ namespace eecs113_final_project_webapp.Models
                     VALUES (2.5, 4, 5),
                             (5.5, 4, 5),
                             (5.5, 4, 5),
-                            (5.5, 1, 5),
-                            (5.5, 0, 5),
-                            (5.5, 3, 5),
                             (3.5, 6, 5);
                 ");
 
@@ -172,6 +169,27 @@ namespace eecs113_final_project_webapp.Models
             return list;
         }
 
+        public async void AddActionEvent(ActionEvent actionEvent)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append($@"
+                    INSERT INTO action_event(etype)
+                    VALUES ('{actionEvent.TypeString}');
+                ");
+                String sql = sb.ToString();
+
+                var command = new NpgsqlCommand(sql, conn);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    await reader.ReadAsync();
+                }
+            }
+        }
+
         public List<WeatherData> GetMostRecentHourlyWeatherData(int maxTotalRow)
         {
             var list = new List<WeatherData>();
@@ -208,6 +226,28 @@ namespace eecs113_final_project_webapp.Models
             }
             return list;
         }
+
+        public async void AddWeatherData(WeatherData weatherData)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append($@"
+                    INSERT INTO weather_data(temperature, humidity, water_saved)
+                    VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved});
+                ");
+                String sql = sb.ToString();
+
+                var command = new NpgsqlCommand(sql, conn);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    await reader.ReadAsync();
+                }
+            }
+        }
+
 
         public SummaryReport GetSummaryReport()
         {
