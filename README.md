@@ -24,6 +24,7 @@
 
 [google icon themes][1]
 [table by PableraShow][2]
+[chart by chart.js][3]
 
 ## Usage Info
 
@@ -49,3 +50,4 @@ POST request at: ```/api/Log/event```
 
 [1]: https://github.com/google/material-design-icons/blob/master/LICENSE
 [2]: https://colorlib.com/wp/css3-table-templates/
+[3]: https://github.com/chartjs/Chart.js

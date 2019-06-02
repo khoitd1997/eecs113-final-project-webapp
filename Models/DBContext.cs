@@ -16,7 +16,7 @@ namespace eecs113_final_project_webapp.Models
         {
             this.ConnectionString = connectionString;
             NpgsqlConnection.GlobalTypeMapper.MapEnum<ActionEvent.EventType>("event_type");
-            CreateTable();
+            // CreateTable();
         }
 
         private NpgsqlConnection GetConnection()

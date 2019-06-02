@@ -66,8 +66,8 @@ namespace eecs113_final_project_webapp
                     name: "EventLog",
                     template: "{controller=Home}/{action=EventLog}/{id?}");
                 routes.MapRoute(
-                    name: "EventLog",
-                    template: "{controller=APIController}/{action=EventLog}/{id?}");
+                    name: "DataGraph",
+                    template: "{controller=Home}/{action=DataGraph}/{id?}");
             });
         }
     }

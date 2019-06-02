@@ -41,6 +41,12 @@ namespace eecs113_final_project_webapp.Controllers
             }
         }
 
+        public IActionResult DataGraph()
+        {
+            var eventCtx = HttpContext.RequestServices.GetService(typeof(eecs113_final_project_webapp.Models.DBContext)) as DBContext;
+            return View(eventCtx.GetMostRecentActionEvents(MaxEventLogRow_));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
