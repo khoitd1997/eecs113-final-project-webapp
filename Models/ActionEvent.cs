@@ -1,22 +1,33 @@
 using System;
 using System.Linq;
+using System.Runtime.Serialization;
 using NpgsqlTypes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 namespace eecs113_final_project_webapp.Models
 {
     public class ActionEvent
     {
+        [JsonConverter(typeof(StringEnumConverter))]
+
         public enum EventType
         {
             [PgName("watering_start")]
+            [EnumMember(Value = "watering_start")]
             WateringStart,
+
             [PgName("watering_end")]
+            [EnumMember(Value = "watering_end")]
             WateringEnd,
+
             [PgName("watering_continue")]
+            [EnumMember(Value = "watering_continue")]
             WateringContinue,
+
             [PgName("human_detected")]
+            [EnumMember(Value = "human_detected")]
             HumanDetected
         }
         public static bool IsValidEvent(string actionEvent)
@@ -48,8 +59,8 @@ namespace eecs113_final_project_webapp.Models
         private DBContext context;
         public Int32 ID { get; private set; }
 
-        public EventType Type { get; private set; }
         [JsonProperty("etype")]
+        public EventType Type { get; private set; }
         public String TypeString
         {
             get

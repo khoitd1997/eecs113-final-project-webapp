@@ -1,3 +1,3 @@
-DELETE FROM action_event WHERE etype='watering_start';
+DELETE FROM action_event ;
 
 -- DELETE FROM weather_data;
