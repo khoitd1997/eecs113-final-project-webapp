@@ -14,7 +14,7 @@ Main Page Address: ``` https://eecs113-final-project.azurewebsites.net```. The r
 
 ### API
 
-POST request at: ```/api/Log/weather```
+Logging Weather Data: POST request at: ```/api/Log/weather```
 
 ```json
 {
@@ -24,7 +24,7 @@ POST request at: ```/api/Log/weather```
 }
 ```
 
-POST request at: ```/api/Log/event```
+Logging Event: POST request at: ```/api/Log/event```
 
 ```json
 {
