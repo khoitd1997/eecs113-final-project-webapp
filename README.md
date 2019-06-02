@@ -1,6 +1,6 @@
 # EECS113 Final Project Webapp
 
-.NET core webapp for eecs113 final project. Serve as the frontend for users viewing/searching the data as well as backend REST API server for logging.
+.NET core webapp for eecs113 final project. Serve as the frontend for users viewing/searching the data as well as backend REST API server for logging. Utilize Azure to run PostgresDB as well as Webapi and Webapp.
 
 ## Usage Info
 
