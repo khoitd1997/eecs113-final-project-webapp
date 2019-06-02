@@ -16,6 +16,7 @@ namespace eecs113_final_project_webapp.Models
         {
             this.ConnectionString = connectionString;
             NpgsqlConnection.GlobalTypeMapper.MapEnum<ActionEvent.EventType>("event_type");
+            CreateTable();
         }
 
         private NpgsqlConnection GetConnection()
@@ -29,20 +30,44 @@ namespace eecs113_final_project_webapp.Models
             {
                 conn.Open();
                 StringBuilder sb = new StringBuilder();
-                // sb.Append(@"DROP DATABASE IF EXISTS eecs113;
-                //         CREATE DATABASE eecs113;
-                //         ");
-                sb.Append("DROP TABLE IF EXISTS Test;");
-                sb.Append(@"CREATE TABLE Test(
-                    phlid  	VARCHAR(8),
-                    email		VARCHAR(70) NOT NULL,
-                    pswd		CHAR(32) NOT NULL,
-                    PRIMARY KEY (phlid)
-                );");
+
                 sb.Append(@"
-                INSERT INTO Test VALUES ('1','tereasa.feest@uci.com','klfsadjlfadjklsjlfkas');
-                INSERT INTO Test VALUES ('2','kd.feest@uci.com','fkasldfjlads');
-                INSERT INTO Test VALUES('3','delta.feest@uci.com','fkasldfjlads'); ");
+                    DROP TABLE IF EXISTS action_event;
+                    DROP TYPE IF EXISTS event_type;
+                    CREATE TYPE event_type AS ENUM ('watering_start', 'watering_end', 'watering_continue',                  'human_detected');
+                    CREATE TABLE action_event
+                    (
+                        eid        SERIAL PRIMARY KEY,
+                        etype      event_type               NOT NULL,
+                        time_stamp TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+                    );
+
+                    DROP TABLE IF EXISTS weather_data;
+                    CREATE TABLE weather_data
+                    (
+                        wid         SERIAL PRIMARY KEY,
+                        temperature float                    NOT NULL,
+                        humidity    float                    NOT NULL,
+                        water_saved float                    NOT NULL,
+                        time_stamp TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+                    );
+
+                    INSERT INTO action_event(etype)
+                    VALUES ('watering_start'),
+                           ('watering_end'),
+                           ('watering_continue'),
+                           ('human_detected');
+
+                    INSERT INTO weather_data(temperature, humidity, water_saved)
+                    VALUES (2.5, 4, 5),
+                            (5.5, 4, 5),
+                            (5.5, 4, 5),
+                            (5.5, 1, 5),
+                            (5.5, 0, 5),
+                            (5.5, 3, 5),
+                            (3.5, 6, 5);
+                ");
+
                 String sql = sb.ToString();
 
                 var command = new NpgsqlCommand(sql, conn);
