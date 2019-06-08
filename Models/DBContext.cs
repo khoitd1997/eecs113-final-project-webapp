@@ -231,6 +231,7 @@ namespace eecs113_final_project_webapp.Models
                 // }
                 // else
                 // {
+                // 
                 sb.Append($@"
                     INSERT INTO weather_data(temperature, humidity, water_saved, time_stamp)
                     VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved}, '{DateTime.Now.ToString("mm/dd/yyyy HH:mm:ss")}');
