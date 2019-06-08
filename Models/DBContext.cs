@@ -222,20 +222,20 @@ namespace eecs113_final_project_webapp.Models
                 conn.Open();
                 StringBuilder sb = new StringBuilder();
 
-                if (weatherData.Timestamp == default(DateTime))
-                {
-                    sb.Append($@"
-                    INSERT INTO weather_data(temperature, humidity, water_saved)
-                    VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved});
-                    ");
-                }
-                else
-                {
-                    sb.Append($@"
+                // if (weatherData.Timestamp == default(DateTime))
+                // {
+                //     sb.Append($@"
+                //     INSERT INTO weather_data(temperature, humidity, water_saved)
+                //     VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved});
+                //     ");
+                // }
+                // else
+                // {
+                sb.Append($@"
                     INSERT INTO weather_data(temperature, humidity, water_saved, time_stamp)
                     VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved}, {weatherData.Timestamp});
                     ");
-                }
+                // }
 
                 String sql = sb.ToString();
 
