@@ -233,8 +233,8 @@ namespace eecs113_final_project_webapp.Models
                 // {
                 // 
                 sb.Append($@"
-                    INSERT INTO weather_data(temperature, humidity, water_saved, time_stamp)
-                    VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved}, '{DateTime.Now.ToString("mm/dd/yyyy HH:mm:ss")}');");
+                    INSERT INTO weather_data(temperature, humidity, water_saved)
+                    VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved});");
                 // }
 
                 String sql = sb.ToString();
