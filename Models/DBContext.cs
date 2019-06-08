@@ -16,7 +16,7 @@ namespace eecs113_final_project_webapp.Models
         {
             this.ConnectionString = connectionString;
             NpgsqlConnection.GlobalTypeMapper.MapEnum<ActionEvent.EventType>("event_type");
-            // CreateTable();
+            CreateTable();
         }
 
         private NpgsqlConnection GetConnection()
@@ -233,7 +233,8 @@ namespace eecs113_final_project_webapp.Models
                 // {
                 sb.Append($@"
                     INSERT INTO weather_data(temperature, humidity, water_saved, time_stamp)
-                    VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved}, '06/07/2021 21:35:27');");
+                    VALUES ({weatherData.Temperature}, {weatherData.Humidity}, {weatherData.WaterSaved}, {weatherData.Timestamp.ToString("mm/dd/yyyy HH:mm:ss")});
+                    ");
                 // }
 
                 String sql = sb.ToString();
