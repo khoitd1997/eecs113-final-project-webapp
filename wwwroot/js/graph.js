@@ -9,8 +9,6 @@ function drawGraph(temperatures, humidities, time_stamps) {
                 label: 'Temperatue vs Time',
 
                 backgroundColor: 'transparent',
-                // borderColor: "Orange",
-                // borderColor: "MediumSeaGreen",
                 borderColor: "CadetBlue",
 
                 pointRadius: "5",
@@ -43,7 +41,7 @@ function drawGraph(temperatures, humidities, time_stamps) {
                 yAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Temperature(C)',
+                        labelString: 'Temperature(F)',
                         fontSize: "18",
                         fontColor: "rgba(255, 255, 255, 0.6)"
                     },
@@ -72,9 +70,7 @@ function drawGraph(temperatures, humidities, time_stamps) {
                 label: 'Humidity vs Time',
 
                 backgroundColor: 'transparent',
-                // borderColor: "Orange",
                 borderColor: "MediumSeaGreen",
-                // borderColor: "CadetBlue",
 
                 pointRadius: "5",
                 lineTension: "0",
