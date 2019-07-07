@@ -1,3 +1,5 @@
+THE PAGE HAS BEEN TAKEN DOWN, THIS README IS FOR REFERENCES ONLY.
+
 # EECS113 Final Project Webapp
 
 .NET core webapp for eecs113 final project. Serve as the frontend for users viewing/searching the data as well as backend REST API server for logging. Utilize Azure to run PostgresDB as well as Webapi and Webapp.
@@ -47,12 +49,10 @@ Logging Event: POST request at: ```/api/Log/event```
 - Server name: eecs113-final-pq
 - Database name: eecs113-final-db
 - Server admin login: kd
-- Password: 116$I!1737LyF^YGxx5
 - Server Location: West US
 - Resource Group: eecs113
 - Collation: SQL_Latin1_General_CP1_CI_AS
 - Storage: 2 Gb
-- Address: ```eecs113-final-pq.postgres.database.azure.com```
 
 ## Credits
 
